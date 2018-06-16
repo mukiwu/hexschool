@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <title>六角學院 #1 TodoList</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <section>
+        <ul>
+          <li :class="{'current': filter_status == 'all'}" @click="filter_status='all'">My Tasks</li>
+          <li :class="{'current': filter_status == 'progress'}" @click="filter_status='progress'">In Progress</li>
+          <li :class="{'current': filter_status == 'complete'}" @click="filter_status='complete'">Completed</li>
+        </ul>
+      </section>
+    </header>
+    <section>
+        <div class="form" v-if="!todoShow" @click="todoShow=true"><input type="text" placeholder="+ Add Task" required></div>
+      <div class="form" v-if="todoShow"><input v-model="todoForm.title" type="text" placeholder="Type Something Here..." required></div>
+      <div class="todoAdd" v-if="todoShow">
+        <div class="todoAdd-content">
+          <el-form :label-position="labelPosition" label-width="80px">
+            <el-form-item><p><i class="far fa-calendar-alt"></i><span class="title">Deadline</span><p>
+              <el-date-picker
+                v-model="todoForm.deadline"
+                type="datetime"
+                value-format="yyyy-MM-dd HH:mm:ss"
+                placeholder="請選擇日期時間">
+              </el-date-picker>
+            </el-form-item>
+            <el-form-item><p><i class="far fa-file"></i><span class="title">File</span></p>
+              <el-upload class="upload" :on-remove="handleRemove" v-model="todoForm.file">
+                <el-button size="small" type="primary">+</el-button>
+              </el-upload>
+            </el-form-item>
+            <el-form-item><p><i class="far fa-comment-dots"></i><span class="title">Comment</span><p>
+              <el-input type="textarea" :rows="4" v-model="todoForm.comment" placeholder="type your memo here..."></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="todoAdd-action">
+          <el-button-group>
+            <el-button @click="todoShow=false">X Cancel</el-button>
+            <el-button type="primary" @click="onSubmit">+ Add Task</el-button>
+          </el-button-group>
+        </div>
+      </div>
+        <ul class="todoList">
+          <li class="status" :class="{ 'status-star': todo.status_star }" v-for="(todo, id) in filteredTodoLists">
+            <input type="checkbox" :id="'checkTodo' + id" v-model="todo.status_checked">
+            <label :for="'checkTodo' + id" class="title" :class="{ 'title-complete': todo.status_checked }"><span></span><h3>{{ todo.title }}</h3></label>
+            <i class="star far fa-star" v-if="!todo.status_star" @click="onModifyStar(id)" v-model="modifyForm.status_star"></i>
+            <i class="star fas fa-star" v-if="todo.status_star" @click="onModifyStar(id)" v-model="modifyForm.status_star"></i>
+            <i class="edit fas fa-pencil-alt" @click="todo.edit=true"></i>
+            <ul class="todoList-status">
+              <li class="calendar"><i class="far fa-calendar-alt"></i> {{todo.deadline}}</li>
+              <li class="file" v-if="todo.file"><i class="far fa-file"></i></li>
+              <li class="comment" v-if="todo.comment"><i class="far fa-comment-dots"></i></li>
+            </ul>
+            <div class="todoModify" v-if="todo.edit">
+              <div class="todoModify-content">
+                <el-form :label-position="labelPosition" label-width="80px">
+                  <el-form-item><p><i class="far fa-calendar-alt"></i><span class="modify-title">Deadline</span><p>
+                    <el-date-picker
+                      v-model="modifyForm.deadline"
+                      type="datetime"
+                      value-format="yyyy-MM-dd HH:mm:ss"
+                      placeholder="請選擇日期時間">
+                    </el-date-picker>
+                  </el-form-item>
+                  <el-form-item><p><i class="far fa-file"></i><span class="modify-title">File</span></p>
+                    <el-upload class="upload" :on-remove="handleRemove" v-model="todo.file">
+                      <el-button size="small" type="primary">+</el-button>
+                    </el-upload>
+                  </el-form-item>
+                  <el-form-item><p><i class="far fa-comment-dots"></i><span class="modify-title">Comment</span><p>
+                    <el-input type="textarea" :rows="4" v-model="modifyForm.comment" placeholder="type your memo here..."></el-input>
+                  </el-form-item>
+                </el-form>
+              </div>
+              <div class="todoAdd-action">
+                <el-button-group>
+                  <el-button @click="todo.edit=false">X Cancel</el-button>
+                  <el-button type="primary" @click="onModify(id)">+ Save</el-button>
+                </el-button-group>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="tasks"> {{tasks}} tasks left</div>
+      </section>
+    </div>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="js/vue.js"></script>
+</body>
+</html>

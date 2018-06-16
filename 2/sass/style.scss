@@ -1,0 +1,301 @@
+/* #region */
+
+@import "compass/reset";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700');
+
+$darkPurple : #7828b4;
+$Purple     : #9013fe;
+$darkGrey   : #9b9b9b;
+$Grey       : #d7d7d7;
+$lightGrey  : #ebebeb;
+$lightWhite : #f2f2f2;
+$White      : #ffffff;
+$Black      : #000000;
+
+@mixin b_20 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+@mixin b_24 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+@mixin b_36 {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+/* #endregion */
+
+// BASE
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 160%;
+  background: $lightWhite;
+}
+
+img {
+  max-width: 100%;
+}
+
+// Layout
+
+.wrapper-content {
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid-small {
+  flex-basis: 300px;
+  margin-right: 42px;
+}
+
+.grid-big {
+  flex-basis: 900px;
+}
+
+header {
+  background: $darkPurple;
+  padding: 24px 0;
+}
+
+.sidebar {
+  background: $lightGrey;
+}
+
+.main {
+  padding: 24px 0 0 0;
+}
+
+.main-box {
+  display: flex;
+  margin-bottom: 24px;
+  box-shadow: 5px 5px 5px 0 rgba($Grey,.3);
+  transition: all .3s ease;
+  &:hover {
+    box-shadow: 5px 5px 5px 0 rgba($Grey,.6);
+  }
+}
+
+.main-content {
+  flex-shrink: 1;
+}
+
+.thumb {
+  display: inherit;
+  flex-shrink: 0;
+}
+
+// Module
+
+.sidebar-box {
+  border-bottom: 1px solid $Grey;
+  padding: 25px 40px;
+  .title {
+    @include b_20;
+    margin-bottom: 15px;
+  }
+}
+
+.main-content {
+  background: $White;
+  padding-left: 20px;
+  .title {
+    padding: 24px 0 16px 0;
+    @include b_24;
+  }
+  .title a {
+    color: $Purple;
+    text-decoration: none;
+  }
+  p {
+    margin-bottom: 16px;
+  }
+}
+
+.info {
+  i {
+    font-size: 1rem;
+    margin-right: 3px;
+    vertical-align: middle;
+    line-height: 25px;
+  }
+  li {
+    display: inline-block;
+    margin-right: 19px;
+    color: $darkGrey;
+  }
+}
+
+// Component
+
+.logo {
+  display: block;
+  width: 157px;
+  height: 44px;
+  background: url('../img/logo.svg') no-repeat;
+  background-size: 157px 44px;
+  text-indent: 158px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.search-form {
+  position: relative;
+  top: 10px;
+  &::before {
+    content: 'search';
+    font-family: "Material Icons";
+    font-size: 20px;
+    display: inline-block;
+    color: $White;
+    position: absolute;
+    top: 2px;
+  }
+  input {
+    background: $darkPurple;
+    border: none;
+    border-bottom: 1px solid $White;
+    font-size: 20px;
+    color: $White;
+    width: 388px;
+    padding-left:24px;
+  }
+  ::placeholder {
+    color: $White;
+    font-style: italic;
+  }
+}
+
+.result-title {
+  font-size: 24px;
+  span {
+    color: $darkPurple;
+    font-weight: bold;
+  }
+}
+
+.result-tags {
+  margin: 8px 0 24px 0;
+  li {
+    display: inline-block;
+    border-radius: 100px;
+    border: 1px solid $Purple;
+    padding: 8px 16px;
+    margin-right: 8px;
+    color: $Purple;
+    font-style: italic;
+    transition: all .3s ease;
+    &:hover {
+      background: $Purple;
+      color: $White;
+      cursor: pointer;
+      .material-icons {
+        border: 1px solid $White;
+      }
+    }
+  }
+  .material-icons {
+    border-radius: 50%;
+    border: 1px solid $Purple;
+    font-size: 1rem;
+    transform: translate(5px, 3px);
+  }
+}
+
+.pagenavi {
+  margin-top: 24px;
+  text-align: right;
+  li {
+    display: inline-block;
+  }
+  a {
+    display: inline-block;
+    padding: 10px 16px;
+    background: $White;
+    text-decoration: none;
+    &:hover {
+      background: $Purple;
+      color: $White;    
+    }
+  }
+  .current {
+    padding: 10px 16px;
+    background: $Purple;
+    color: $White;
+  }
+}
+
+// RWD
+
+@media only screen and (max-width: 1000px) {
+  .main-container {
+    display: flex;
+  }
+  .main-box {
+    flex-direction: column;
+    margin-right: 40px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  header {
+    padding: 0;
+  }
+  .wrapper-content {
+    flex-direction: column;
+  }
+  h1 {
+    padding: 20px 0;
+  }
+  .logo {
+    margin: 0 auto;
+    width: 105px;
+    height: 29px;
+    background-size: 105px 29px;
+    text-indent: 106px;
+  }
+  .search-form {
+    background: $lightGrey;
+    padding: 1em 0;
+    text-align: center;
+    input {
+      background: $lightGrey;
+      border-bottom: 1px solid $Black;
+      width: 80vw;
+    }
+    &::before {
+      color: $Black;
+      top: 17px;
+    }
+    ::placeholder {
+      color: $darkGrey;
+    }
+  }
+  .main {
+    width: 90vw;
+    margin: 0 auto;
+  }
+  .grid-big, .grid-small {
+    flex-basis: 100%;
+  }
+  .grid-small {
+    margin-right: 0;
+  }
+  .main-container {
+    display: block;
+  }
+  .main-box {
+    margin-right: 0;
+  }
+}

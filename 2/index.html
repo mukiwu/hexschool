@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>六角學院 #1 Filter</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <div class="wrapper-content">
+        <div class="grid-small"><h1><a href="#" class="logo">HaveFun</a></h1></div>
+        <div class="grid-big search-form"><input type="text" placeholder="Explore your own activites"></div>
+      </div>
+    </header>
+    <div class="wrapper-content">
+      <div class="grid-small sidebar">
+        <div class="sidebar-box">
+          <div class="title">Location</div>
+          <div class="sidebar-content">
+            <select>
+              <option value="台北">台北</option>
+              <option value="高雄">高雄</option>
+            </select>
+          </div>
+        </div>
+        <div class="sidebar-box">
+          <div class="title">Date</div>
+          <div class="sidebar-content">
+            <p>From: <input type="date"></p>
+            <p>To: <input type="text"></p>
+          </div>
+        </div>
+        <div class="sidebar-box">
+          <div class="title">Categories</div>
+          <div class="sidebar-content">
+            <p><input type="checkbox">All</p>
+            <p><input type="checkbox">Food</p>
+            <p><input type="checkbox">Travel</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid-big main">
+        <p class="result-title">Showing <span>15</span> results by...</p>
+        <ul class="result-tags">
+          <li>Kaohsiung<i class="material-icons">clear</i></li>
+          <li>Entermainent<i class="material-icons">clear</i></li>
+        </ul> 
+        <div class="main-container">                 
+          <div class="main-box">
+            <div class="thumb">
+                <img src="img/220.png"
+                     srcset="img/220.png 220w,
+                             img/388.png 388w,
+                             img/334.png 334w"
+                     sizes="(max-width: 1000px) 388px, 
+                            (max-width: 450px) 334px,
+                            220px"
+                >
+            </div>
+            <div class="main-content">
+              <h3 class="title"><a href="#">Lorem ipsum dolor sit amet</a></h3>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat dolore, nulla assumenda ea facere deserunt pariatur, earum ipsa harum minus accusamus dolorum veniam temporibus et praesentium possimus delectus ex. Velit?</p>
+              <ul class="info">
+                <li class="zone"><i class="material-icons">location_on</i>Kaohsuing City</li>
+                <li class="opentime"><i class="material-icons">calendar_today</i>每日08:00-17:00</li>
+              </ul>
+            </div>
+          </div>
+          <div class="main-box">
+            <div class="thumb">
+                <img src="img/220.png"
+                srcset="img/220.png 220w,
+                        img/388.png 388w,
+                        img/334.png 334w"
+                sizes="(max-width: 1000px) 388px, 
+                       (max-width: 450px) 334px,
+                       220px"
+                >
+            </div>
+            <div class="main-content">
+              <h3 class="title"><a href="#">Lorem ipsum dolor sit amet</a></h3>
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat dolore, nulla assumenda ea facere deserunt pariatur, earum ipsa harum minus accusamus dolorum veniam temporibus et praesentium possimus delectus ex. Velit?</p>
+              <ul class="info">
+                <li class="zone"><i class="material-icons">location_on</i>Kaohsuing City</li>
+                <li class="opentime"><i class="material-icons">calendar_today</i>每日08:00-17:00</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <ul class="pagenavi">
+          <li><a href="#">&lt;</a></li>
+          <li class="current">1</li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">&gt;</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
