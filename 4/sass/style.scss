@@ -1,0 +1,425 @@
+$Black         : #000;
+$lightBlack    : rgba(#000, .3);
+$lighterBlack  : rgba(#000, .1);
+$Mint          : #50e3c2;
+
+@import "compass/reset";
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+@mixin move($x, $y, $z: 0deg){
+  transform: translate($x, $y) rotate($z);
+}
+
+@mixin pattern-ot($x, $y) {
+  background: #fff;
+  border: 20px solid $Mint;
+  width: $x;
+  height: $y;
+  z-index: -2;
+}
+
+@mixin pattern-bg($x, $y) {
+  background: $Mint;
+  width: $x;
+  height: $y;
+  z-index: -1;
+}
+
+/*BASE*/
+
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-top: 35px;
+}
+
+img {
+  max-width: 100%;
+}
+
+/*STYLE*/
+
+.text-highlight {
+  color: #fff;
+  background: $Black;
+  font-size: 20px;
+  padding: 2px 10px;
+  display: inline-block;
+}
+
+.text-title {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.order {
+  .title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 48px;
+    position: relative;
+    &::before {
+      content: attr(data-shadow);
+      position: absolute;
+      top: -15px;
+      height: 19px;
+      color: $lightBlack;
+      overflow: hidden;
+    }
+    &::after {
+      content: attr(data-shadow);
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: -23px;
+      height: 19px;
+      color: $lighterBlack;
+      overflow: hidden;
+    }
+  }
+}
+
+.text-order {
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: bold;
+}
+
+.text-label {
+  font-size: 28px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.pattern {
+  box-sizing: border-box;
+}
+
+.pattern-linear {
+  background-image: repeating-linear-gradient(60deg, $Mint, $Mint 15px, transparent 0,transparent 30px);
+  width: 240px;
+  height: 100px;
+}
+
+/*LAYOUT*/
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(8, 120px);
+  grid-template-rows: repeat(20, 110px);
+}
+
+header {
+  grid-column: 1 / -1;
+}
+
+.order {
+  display: grid;
+}
+
+.order-1 {
+  grid-column: 1 / span 5;
+  grid-row: 2 / span 6;
+  grid-template-columns: repeat(5, 120px);
+  grid-template-rows: repeat(6, 110px);
+}
+
+.order-2 {
+  grid-column: 6 / span 3;
+  grid-row: 3/ span 4;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(4, 110px);
+}
+
+.order-3 {
+  grid-column: 1 / span 5;
+  grid-row: 8 / span 4;
+  grid-template-columns: repeat(5, 120px);
+  grid-template-rows: repeat(4, 110px);
+}
+
+.order-4 {
+  grid-column: 6 / span 3;
+  grid-row: 7 / span 6;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(6, 110px);
+}
+
+.order-5 {
+  grid-column: 1 / span 5;
+  grid-row: 13 / span 2;
+  grid-template-columns: repeat(5, 120px);
+  grid-template-rows: repeat(2, 110px);
+}
+
+.order-6 {
+  grid-column: 4 / span 5;
+  grid-row: 14 / span 6;
+  grid-template-columns: repeat(5, 120px);
+  grid-template-rows: repeat(6, 110px);
+}
+
+.order-7 {
+  grid-column: 1 /span 3;
+  grid-row: 16 / span 5;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(5, 110px);
+}
+
+/*ORDER ITEMS*/
+
+@for $i from 1 through 7 {
+  .order-img-#{$i} {
+    background: url("../img/0#{$i}.jpeg") no-repeat 50% 50%;
+    background-size: cover;
+  }
+}
+
+.order {
+  .title, .text-label {
+    white-space: nowrap;
+  }
+}
+
+.order-1 {
+  .title {
+    grid-row: 1 / span 1;
+    @include move(0, 100%);
+  }
+  .text-order {
+    grid-row: 6 / span 1;
+    grid-column: 1/ span 1;
+  }
+  .text-label {
+    @include move(calc(-100% + 1em + 10px), 10px, 90deg);
+    grid-column: 5 / span 1;
+    grid-row: 5 / span 1;
+  }
+  .pattern-outline {
+    @include pattern-ot(240px, 200px);
+    grid-column: 2 / span 2;
+    @include move(calc(50% + 60px), 0);
+  }
+  .pattern-linear {
+    grid-column: 1 / span 2;
+    grid-row: 6 / span 1;
+    @include move(calc(50% - 60px), -50%);
+  }
+}
+
+.order-2 {
+  .title {
+    grid-column: 2 / span 2;
+    grid-row: 4 / span 1;
+    @include move(0, 1rem);
+  }
+  .text-order {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    text-align: right;
+  }
+  .text-label {
+    @include move(-10px, calc(100% - 1em));
+  }
+  .pattern-outline {
+    @include pattern-ot(240px, 200px);
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 2;
+  }
+  .pattern-bg {
+    @include pattern-bg(240px, 200px);
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+    @include move (calc(50% - 60px), calc(50% - 36px));
+  }
+}
+
+.order-3 {
+  .title {
+    grid-column: 2 / span 3;
+    grid-row: 1/ span 1;
+    text-align: right;
+    @include move (0, calc(100% - 1em));
+  }
+  .text-order {
+    grid-column: 5 / span 1;
+    grid-row: 4 / span 1;
+  }
+  .text-label {
+    grid-row: 4 / span 1;
+    text-align: right;
+  }
+  .pattern-outline {
+    @include pattern-ot(240px, 200px);
+    grid-column: 3 / span 2;
+    grid-row: 2 / span 2;
+    @include move(calc(50% - 55px), calc(50% - 36px));
+  }
+  .pattern-bg {
+    @include pattern-bg(240px, 200px);
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+    @include move (0, calc(50% - 36px));
+  }
+}
+
+.order-4 {
+  .title {
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 1;
+    @include move(50%, 0, -90deg);
+  }
+  .text-order {
+    grid-row: 6 / span 1;
+    text-align: right;
+    @include move (0, calc(100% - 1em));
+  }
+  .text-label {
+    @include move(60%, 60%, 90deg);
+    grid-column: 2 / span 1;
+  }
+  .pattern-outline {
+    @include pattern-ot(240px, 200px);
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 2;
+    @include move(calc(50% - 55px), 0);
+  }
+  .pattern-linear {
+    grid-column: 2 / span 2;
+    grid-row: 7 / span 1;
+    @include move(0, -50%);
+  }
+}
+
+.order-5 {
+  .title {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
+    @include move (0, calc(100% - 1em));
+  }
+  .text-order {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    @include move (0, calc(100% - 1em));
+  }
+  .text-label {
+    grid-column: 5 / span 1;
+    grid-row: 1 / span 1;
+  }
+  .pattern-outline {
+    @include pattern-ot(240px, 100px);
+    grid-column: 2 / span 2;
+    grid-row: 2 / span 2;
+    @include move(0, 50%);
+  }
+  .pattern-linear {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
+    @include move(25%, -50%);
+  }
+}
+
+.order-6 {
+  .title {
+    grid-column: 3 / span 3;
+    @include move (0, calc(100% - 1em));
+    text-align: right;
+  }
+  .text-order {
+    grid-row: 3 / span 1;
+    @include move (0, calc(100% - 1em));
+    text-align: right;
+  }
+  .text-label {
+    grid-column: 3 / span 2;
+    text-align: center;
+  }
+  .pattern-outline {
+    @include pattern-ot(480px, 200px);
+    grid-column: 2 / span 4;
+    grid-row: 4 / span 2;
+    @include move(0, calc(50% - 1em));
+  }
+  .pattern-bg {
+    @include pattern-bg(240px, 200px);
+    grid-column: 1 / span 2;
+    grid-row: 4 / span 2;
+    @include move (calc(50% - 60px),0);
+  }
+}
+
+.order-7 {
+  .title {
+    @include move(-50%, 0, 90deg);
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+  }
+  .text-order {
+    grid-column: 3 / span 1;
+    grid-row: 5 / span 1;
+    text-align: right;
+    @include move (0, calc(100% - 1em));
+  }
+  .text-label {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    @include move (0, calc(100% - 1em));
+  }
+  .pattern-outline {
+    @include pattern-ot(240px, 400px);
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 5;
+    @include move(calc(50% - 60px), 55px);
+  }
+  .pattern-bg {
+    @include pattern-bg(240px, 220px);
+    grid-column: 2 / span 2;
+    grid-row: 4 / span 2;
+  }
+}
+
+.order-img-1 {
+  grid-column: 1 / span 4;
+  grid-row: 2 / span 4;
+}
+
+.order-img-2 {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 2;
+}
+
+.order-img-3 {
+  grid-column: 1 / span 4;
+  grid-row: 2 / span 2;
+}
+
+.order-img-4 {
+  grid-column: 2 / span 2;
+  grid-row: 3 / span 4;
+}
+
+.order-img-5 {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 2;
+}
+
+.order-img-6 {
+  grid-column: 2 / span 4;
+  grid-row: 2 / span 4;
+}
+
+.order-img-7 {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 4;
+}
+
+/*COMPONENT*/
+
+h1.text-title {
+  margin: .5em 0;
+}
