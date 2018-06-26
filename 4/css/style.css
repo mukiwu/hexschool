@@ -299,7 +299,7 @@ header {
   height: 200px;
   z-index: -2;
   grid-column: 2 / span 2;
-  transform: translate(calc(50% + 60px), 0) rotate(0deg);
+  transform: translate(calc(50% + 60px), calc(50% - 36px)) rotate(0deg);
 }
 /* line 208, ../sass/style.scss */
 .order-1 .pattern-linear {

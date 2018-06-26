@@ -203,7 +203,7 @@ header {
   .pattern-outline {
     @include pattern-ot(240px, 200px);
     grid-column: 2 / span 2;
-    @include move(calc(50% + 60px), 0);
+    @include move(calc(50% + 60px), calc(50% - 36px));
   }
   .pattern-linear {
     grid-column: 1 / span 2;
